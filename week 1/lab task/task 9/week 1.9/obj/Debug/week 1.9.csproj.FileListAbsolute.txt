@@ -1,0 +1,7 @@
+D:\vs studio\week 1.9\week 1.9\bin\Debug\week 1.9.exe.config
+D:\vs studio\week 1.9\week 1.9\bin\Debug\week 1.9.exe
+D:\vs studio\week 1.9\week 1.9\bin\Debug\week 1.9.pdb
+D:\vs studio\week 1.9\week 1.9\obj\Debug\week 1.9.csproj.AssemblyReference.cache
+D:\vs studio\week 1.9\week 1.9\obj\Debug\week 1.9.csproj.CoreCompileInputs.cache
+D:\vs studio\week 1.9\week 1.9\obj\Debug\week 1.9.exe
+D:\vs studio\week 1.9\week 1.9\obj\Debug\week 1.9.pdb
