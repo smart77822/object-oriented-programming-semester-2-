@@ -1,2 +1,4 @@
-1001|101|savings|50000|Active|2026-11-02
-1002|102|current|100000|Active|2026-11-02
+1001|101|savings|40000|Active|2026-11-02
+1002|102|current|98996|Active|2026-11-02
+1003|103|savings|0|Active|2026-11-02
+1004|104|savings|0|Active|2026-11-02

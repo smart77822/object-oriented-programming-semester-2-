@@ -177,7 +177,7 @@ namespace bank_project.account
             List<accountmodel> accounts = _repo.GetAccountfromfile();
             foreach (accountmodel account in accounts)
             {
-                if (account.getaccounttype() == "Savings" && account.getstatus() == "Active")
+                if ((account.getaccounttype() == "Savings" || account.getaccountnumber() == "savings" ) && account.getstatus() == "Active")
                 {
                     double interest = account.getbalance() * ratePercent / 100;
                     account.setbalance(account.getbalance() + interest);
@@ -187,5 +187,39 @@ namespace bank_project.account
             }
             _repo.savealldataintofile(accounts);
         }
+
+        // Sort by acc balance
+        public List<accountmodel> sortbybalance()
+        {
+            List<accountmodel> accounts = _repo.GetAccountfromfile();
+            for (int i = 0; i < accounts.Count - 1; i++)
+            {
+                for (int j = 0; j < accounts.Count - i - 1; j++)
+                {
+                    if (accounts[j].getbalance() < accounts[j + 1].getbalance())
+                    {
+                        accountmodel temp = accounts[j];
+                        accounts[j] = accounts[j + 1];
+                        accounts[j + 1] = temp;
+                    }
+                }
+            }
+            return accounts;
+        }
+
+        // filter by account type
+        public List<accountmodel> filterbytype(string accountType)
+        {
+            List<accountmodel> result = new List<accountmodel>();
+            foreach (accountmodel account in _repo.GetAccountfromfile())
+            {
+                if (account.getaccounttype() == accountType)
+                {
+                    result.Add(account);
+                }
+            }
+            return result;
+        }
+
     }
 }

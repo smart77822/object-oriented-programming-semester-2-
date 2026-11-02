@@ -9,7 +9,7 @@ namespace bank_project.account
         public readonly string file = "accounts.txt";
 
         public accountrepo() { }
-        public void saveinfile(accountmodel accountmodel)
+        public void saveinfile(accountmodel account)
         {
             if (!File.Exists(file))
             {
@@ -17,7 +17,7 @@ namespace bank_project.account
             }
             using (StreamWriter writer = new StreamWriter(file, true))
             {
-                writer.WriteLine(accountmodel.ToString());
+                writer.WriteLine(account.ToString());
             }
         }
         public void savealldataintofile(List<accountmodel> accounts)

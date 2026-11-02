@@ -47,12 +47,12 @@ namespace bank_project.user
 
         public bool updatepassword(string username, string newPassword)
         {
-            List<usermodel> users = _repo.GetUserfromfile();
+            List<usermodel> users = _repo.GetUserfromfile();    
             foreach (usermodel user in users)
             {
                 if (user.getusername() == username)
                 {
-                    user.setpassword(newPassword);
+                    user.setpassword(newPassword); 
                     _repo.savealldataintofile(users);
                     return true;
                 }
