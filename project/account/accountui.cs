@@ -48,21 +48,17 @@ namespace bank_project.account
                 }
                 else if (option == "8")
                 {
-                    printstatement();
+                    closeorreactivate();
                 }
                 else if (option == "9")
                 {
-                    closeorreactivate();
+                    showreports();
                 }
                 else if (option == "10")
                 {
-                    showreports();
-                }
-                else if (option == "11")
-                {
                     managelogins();
                 }
-                else if (option == "12")
+                else if (option == "11")
                 {
                     savingsinterest();
                 }
@@ -90,11 +86,10 @@ namespace bank_project.account
             Console.WriteLine("5  . ➖ Withdraw");
             Console.WriteLine("6  . 🔄 Transfer");
             Console.WriteLine("7  . 📄 View Transactions");
-            Console.WriteLine("8  . 🖨️ Print Statement");
-            Console.WriteLine("9  . 🔒 Close / Reactivate Account");
-            Console.WriteLine("10 . 📊 Reports");
-            Console.WriteLine("11 . 🔑 Manage Customer Logins (reset password)");
-            Console.WriteLine("12 . 💹 Savings Interest");
+            Console.WriteLine("8  . 🔒 Close / Reactivate Account");
+            Console.WriteLine("9  . 📊 Reports");
+            Console.WriteLine("10 . 🔑 Manage Customer Logins (reset password)");
+            Console.WriteLine("11 . 💹 Savings Interest");
             Console.WriteLine("0  . 🖐️ Logout");
             Console.Write("Choice: ");
             string option = Console.ReadLine();
@@ -130,10 +125,13 @@ namespace bank_project.account
         {
             Console.Write("Account Type (Savings / Current): ");
             string accountType = Console.ReadLine();
-            if (accountType != "Savings" && accountType != "Current")
+          while (!(isvalidacctype(accountType)))
             {
-                accountType = "Savings";
+
+                Console.Write("Account Valid Type (Savings / Current): ");
+                 accountType = Console.ReadLine();
             }
+          
 
 
             accountmodel account = new accountmodel(accountNumber, customer.getcustomerid(), accountType, 0, "Active", "");
@@ -189,6 +187,7 @@ namespace bank_project.account
             Console.Clear();
             List<accountmodel> accounts = _accountservice.getalldata();
             List<customermodel> customers = _customerservice.getalldata();
+            showaccountheading();
             foreach (accountmodel account in accounts)
             {
                 showaccountline(account, customers);
@@ -310,30 +309,6 @@ namespace bank_project.account
             List<transactionmodel> transactions = _transactionservice.getbyaccountnumber(accountNumber);
             showtransactionlist(transactions);
         }
-
-        public void printstatement()
-        {
-            Console.Write("Enter account number: ");
-            string accountNumber = Console.ReadLine();
-            accountmodel account = _accountservice.searchbyaccountnumber(accountNumber);
-            if (account == null)
-            {
-                Console.WriteLine("Account not found.");
-                Console.ReadKey();
-                return;
-            }
-            List<customermodel> customers = _customerservice.getalldata();
-            Console.Clear();
-            Console.WriteLine("----- Statement -----");
-            showaccountline(account, customers);
-            List<transactionmodel> transactions = _transactionservice.getbyaccountnumber(accountNumber);
-            foreach (transactionmodel transaction in transactions)
-            {
-                Console.WriteLine(transaction.getdate() + " | " + transaction.gettype() + " | Rs. " + transaction.getamount() + " | Balance after: Rs. " + transaction.getbalanceafter() + " | " + transaction.getdescription());
-            }
-            Console.ReadKey();
-        }
-
         public void closeorreactivate()
         {
             Console.Write("Enter account number: ");
@@ -491,10 +466,29 @@ namespace bank_project.account
             }
             return "Unknown";
         }
+        private void showaccountheading()
+        {
+            Console.WriteLine(
+                $"{"Account Number",-15} | " +
+                $"{"Customer Name",-25} | " +
+                $"{"Account Type",-12} | " +
+                $"{"Balance",-16} | " +
+                $"{"Status",-10}"
+            );
+
+            Console.WriteLine(new string('-', 95));
+        }
         private void showaccountline(accountmodel account, List<customermodel> customers)
         {
             string name = getholdername(customers, account.getcustomerid());
-            Console.WriteLine(account.getaccountnumber() + " | " + name + " | " + account.getaccounttype() + " | Rs. " + account.getbalance() + " | " + account.getstatus());
+
+            Console.WriteLine(
+                $"{account.getaccountnumber(),-15} | " +
+                $"{name,-25} | " +
+                $"{account.getaccounttype(),-12} | " +
+                $"Rs. {account.getbalance(),-12} | " +
+                $"{account.getstatus(),-10}"
+            );
         }
         private void showtransactionlist(List<transactionmodel> transactions)
         {
@@ -549,5 +543,19 @@ namespace bank_project.account
             }
             return true;
         }
+
+        private bool isvalidacctype(string accounttype)
+        {
+            if (accounttype != "Savings" &&
+                accounttype != "savings" &&
+                accounttype != "Current" &&
+                accounttype != "current")
+            {
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }

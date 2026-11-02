@@ -30,21 +30,15 @@ namespace bank_project.customer
                 Console.ReadKey();
                 return;
             }
-            List<accountmodel> myaccounts = _accountservice.searchallbycustomerid(_customer.getcustomerid());
-            if (myaccounts.Count == 0)
+            accountmodel myaccount = _accountservice.searchbycustomerid(_customer.getcustomerid());
+            if (myaccount == null)
             {
                 Console.WriteLine("No account found for you.");
                 Console.ReadKey();
                 return;
             }
-            if (myaccounts.Count == 1)
-            {
-                _ownaccountnumber = myaccounts[0].getaccountnumber();
-            }
-            else
-            {
-                chooseaccount(myaccounts);
-            }
+            _ownaccountnumber = myaccount.getaccountnumber();
+
 
             while (true)
             {
@@ -79,19 +73,11 @@ namespace bank_project.customer
                 }
                 else if (option == "8")
                 {
-                    printmystatement();
+                    changepassword();
                 }
                 else if (option == "9")
                 {
-                    changepassword();
-                }
-                else if (option == "10")
-                {
                     updatemycontact();
-                }
-                else if (option == "11")
-                {
-                    switchaccount();
                 }
                 else if (option == "0")
                 {
@@ -117,10 +103,8 @@ namespace bank_project.customer
             Console.WriteLine("5  . 🔄 Transfer");
             Console.WriteLine("6  . 📄 Mini Statement (last 5)");
             Console.WriteLine("7  . 📜 Full History");
-            Console.WriteLine("8  . 🖨️ Print My Statement");
-            Console.WriteLine("9  . 🔑 Change Password");
-            Console.WriteLine("10 . ✏️ Update My Contact Details");
-            Console.WriteLine("11 . 🔀 Switch Account");
+            Console.WriteLine("8  . 🔑 Change Password");
+            Console.WriteLine("9  . ✏️ Update My Contact Details");
             Console.WriteLine("0  . 🖐️ Logout");
             Console.Write("Choice: ");
             string option = Console.ReadLine();
@@ -255,19 +239,7 @@ namespace bank_project.customer
             showtransactionlist(transactions);
         }
 
-        public void printmystatement()
-        {
-            Console.Clear();
-            Console.WriteLine("----- My Statement -----");
-            Console.WriteLine("Name: " + _customer.getname());
-            Console.WriteLine("Account: " + _ownaccountnumber);
-            List<transactionmodel> transactions = _transactionservice.getbyaccountnumber(_ownaccountnumber);
-            foreach (transactionmodel transaction in transactions)
-            {
-                Console.WriteLine(transaction.getdate() + " | " + transaction.gettype() + " | Rs. " + transaction.getamount() + " | Balance after: Rs. " + transaction.getbalanceafter() + " | " + transaction.getdescription());
-            }
-            Console.ReadKey();
-        }
+    
 
         public void changepassword()
         {
@@ -307,36 +279,8 @@ namespace bank_project.customer
             Console.ReadKey();
         }
 
-        public void switchaccount()
-        {
-            List<accountmodel> myaccounts = _accountservice.searchallbycustomerid(_customer.getcustomerid());
-            if (myaccounts.Count <= 1)
-            {
-                Console.WriteLine("You have only one account: " + _ownaccountnumber);
-                Console.ReadKey();
-                return;
-            }
-            chooseaccount(myaccounts);
-        }
-        private void chooseaccount(List<accountmodel> myaccounts)
-        {
-            Console.Clear();
-            Console.WriteLine("----- Choose Your Account -----");
-            int index = 1;
-            foreach (accountmodel account in myaccounts)
-            {
-                Console.WriteLine(index + " . " + account.getaccountnumber() + " | " + account.getaccounttype() + " | Rs. " + account.getbalance() + " | " + account.getstatus());
-                index++;
-            }
-            int choice = 0;
-            Console.Write("Choice: ");
-            while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > myaccounts.Count)
-            {
-                Console.Write("Enter a valid number from the list: ");
-            }
-            _ownaccountnumber = myaccounts[choice - 1].getaccountnumber();
-            Console.WriteLine("Selected account: " + _ownaccountnumber);
-        }
+       
+      
         private accountmodel findaccountinlist(List<accountmodel> accounts, string accountNumber)
         {
             foreach (accountmodel account in accounts)

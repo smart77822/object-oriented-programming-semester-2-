@@ -1,3 +1,2 @@
-1001|101|Savings|15000|Active|2026-11-01
-1002|102|Savings|0|Active|2026-11-01
-1003|103|Savings|0|Active|2026-11-01
+1001|101|savings|50000|Active|2026-11-02
+1002|102|current|0|Active|2026-11-02

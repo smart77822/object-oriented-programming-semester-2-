@@ -1,0 +1,7 @@
+C:\Users\Smart-PC\Documents\GitHub\object-oriented-programming-semester-2-\project\bin\Debug\bank_project.exe.config
+C:\Users\Smart-PC\Documents\GitHub\object-oriented-programming-semester-2-\project\bin\Debug\bank_project.exe
+C:\Users\Smart-PC\Documents\GitHub\object-oriented-programming-semester-2-\project\bin\Debug\bank_project.pdb
+C:\Users\Smart-PC\Documents\GitHub\object-oriented-programming-semester-2-\project\obj\Debug\bank-manage.csproj.AssemblyReference.cache
+C:\Users\Smart-PC\Documents\GitHub\object-oriented-programming-semester-2-\project\obj\Debug\bank-manage.csproj.CoreCompileInputs.cache
+C:\Users\Smart-PC\Documents\GitHub\object-oriented-programming-semester-2-\project\obj\Debug\bank_project.exe
+C:\Users\Smart-PC\Documents\GitHub\object-oriented-programming-semester-2-\project\obj\Debug\bank_project.pdb
