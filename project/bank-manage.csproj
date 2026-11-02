@@ -48,7 +48,6 @@
     <Compile Include="account\accountservice.cs" />
     <Compile Include="account\accountui.cs" />
     <Compile Include="bank.cs" />
-    <Compile Include="common\datafilehelper.cs" />
     <Compile Include="customer\customermodel.cs" />
     <Compile Include="customer\customerrepo.cs" />
     <Compile Include="customer\customerservice.cs" />

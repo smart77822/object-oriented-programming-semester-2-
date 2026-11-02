@@ -1,31 +1,28 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using bank_project.common;
 
 namespace bank_project.user
 {
     internal class userrepo
     {
-        private string getfilepath()
-        {
-            return datafilehelper.getresolvedfilepath("users.txt");
-        }
+        public readonly string file = "users.txt";
+
         public userrepo() { }
         public void saveinfile(usermodel usermodel)
         {
-            if (!File.Exists(getfilepath()))
+            if (!File.Exists(file))
             {
-                File.Create(getfilepath()).Close();
+                File.Create(file).Close();
             }
-            using (StreamWriter writer = new StreamWriter(getfilepath(), true))
+            using (StreamWriter writer = new StreamWriter(file, true))
             {
                 writer.WriteLine(usermodel.ToString());
             }
         }
         public void savealldataintofile(List<usermodel> users)
         {
-            File.WriteAllText(getfilepath(), string.Empty);
+            File.WriteAllText(file, string.Empty);
             foreach (usermodel user in users)
             {
                 saveinfile(user);
@@ -37,11 +34,11 @@ namespace bank_project.user
             List<usermodel> userlist = new List<usermodel>();
 
 
-            if (!File.Exists(getfilepath()))
+            if (!File.Exists(file))
             {
                 return userlist;
             }
-            using (StreamReader reader = new StreamReader(getfilepath()))
+            using (StreamReader reader = new StreamReader(file))
             {
                 string line = "";
                 while ((line = reader.ReadLine()) != null)

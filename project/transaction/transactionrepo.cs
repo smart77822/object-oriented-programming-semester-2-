@@ -1,31 +1,28 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using bank_project.common;
 
 namespace bank_project.transaction
 {
     internal class transactionrepo
     {
-        private string getfilepath()
-        {
-            return datafilehelper.getresolvedfilepath("transactions.txt");
-        }
+        public readonly string file = "transactions.txt";
+
         public transactionrepo() { }
         public void saveinfile(transactionmodel transactionmodel)
         {
-            if (!File.Exists(getfilepath()))
+            if (!File.Exists(file))
             {
-                File.Create(getfilepath()).Close();
+                File.Create(file).Close();
             }
-            using (StreamWriter writer = new StreamWriter(getfilepath(), true))
+            using (StreamWriter writer = new StreamWriter(file, true))
             {
                 writer.WriteLine(transactionmodel.ToString());
             }
         }
         public void savealldataintofile(List<transactionmodel> transactions)
         {
-            File.WriteAllText(getfilepath(), string.Empty);
+            File.WriteAllText(file, string.Empty);
             foreach (transactionmodel transaction in transactions)
             {
                 saveinfile(transaction);
@@ -37,11 +34,11 @@ namespace bank_project.transaction
             List<transactionmodel> transactionlist = new List<transactionmodel>();
 
 
-            if (!File.Exists(getfilepath()))
+            if (!File.Exists(file))
             {
                 return transactionlist;
             }
-            using (StreamReader reader = new StreamReader(getfilepath()))
+            using (StreamReader reader = new StreamReader(file))
             {
                 string line = "";
                 while ((line = reader.ReadLine()) != null)
