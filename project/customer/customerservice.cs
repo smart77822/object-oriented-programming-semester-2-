@@ -31,6 +31,7 @@ namespace bank_project.customer
             }
             return null;
         }
+       
         public customermodel searchbycnic(string cnic)
         {
             foreach (customermodel customer in _repo.GetCustomerfromfile())

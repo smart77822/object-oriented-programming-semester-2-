@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|c:\\users\\smart-pc\\documents\\github\\object-oriented-programming-semester-2-\\project\\properties\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|solutionrelative:properties\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|c:\\users\\smart-pc\\documents\\github\\object-oriented-programming-semester-2-\\project\\account\\accountui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|solutionrelative:account\\accountui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|c:\\users\\smart-pc\\documents\\github\\object-oriented-programming-semester-2-\\project\\account\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|solutionrelative:account\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|c:\\users\\smart-pc\\documents\\github\\object-oriented-programming-semester-2-\\project\\customer\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|solutionrelative:customer\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|c:\\users\\smart-pc\\documents\\github\\object-oriented-programming-semester-2-\\project\\account\\accountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|solutionrelative:account\\accountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|c:\\users\\smart-pc\\documents\\github\\object-oriented-programming-semester-2-\\project\\transaction\\transactionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{050D3398-395F-457A-8FF0-FD9884C0B4CA}|bank-manage.csproj|solutionrelative:transaction\\transactionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "test.cs",
-              "DocumentMoniker": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\Properties\\test.cs",
-              "RelativeDocumentMoniker": "Properties\\test.cs",
-              "ToolTip": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\Properties\\test.cs",
-              "RelativeToolTip": "Properties\\test.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIIAAAAqAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "transactionmodel.cs",
+              "DocumentMoniker": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\transaction\\transactionmodel.cs",
+              "RelativeDocumentMoniker": "transaction\\transactionmodel.cs",
+              "ToolTip": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\transaction\\transactionmodel.cs",
+              "RelativeToolTip": "transaction\\transactionmodel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-02T10:24:49.087Z",
+              "WhenOpened": "2026-11-02T12:19:24.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "accountmodel.cs",
+              "DocumentMoniker": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\account\\accountmodel.cs",
+              "RelativeDocumentMoniker": "account\\accountmodel.cs",
+              "ToolTip": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\account\\accountmodel.cs",
+              "RelativeToolTip": "account\\accountmodel.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAiwCgAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-02T12:01:35.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "customerservice.cs",
+              "DocumentMoniker": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\customer\\customerservice.cs",
+              "RelativeDocumentMoniker": "customer\\customerservice.cs",
+              "ToolTip": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\customer\\customerservice.cs",
+              "RelativeToolTip": "customer\\customerservice.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAqwA0AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-02T11:28:23.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "accountservice.cs",
+              "DocumentMoniker": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\account\\accountservice.cs",
+              "RelativeDocumentMoniker": "account\\accountservice.cs",
+              "ToolTip": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\account\\accountservice.cs*",
+              "RelativeToolTip": "account\\accountservice.cs*",
+              "ViewState": "AgIAAIQAAAAAAAAAAAASwPcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-02T11:23:27.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "accountui.cs",
+              "DocumentMoniker": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\account\\accountui.cs",
+              "RelativeDocumentMoniker": "account\\accountui.cs",
+              "ToolTip": "C:\\Users\\Smart-PC\\Documents\\GitHub\\object-oriented-programming-semester-2-\\project\\account\\accountui.cs*",
+              "RelativeToolTip": "account\\accountui.cs*",
+              "ViewState": "AgIAAHABAAAAAAAAAAAqwJsCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-02T11:19:47.301Z",
               "EditorCaption": ""
             }
           ]

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using bank_project.customer;
 using bank_project.transaction;
 
 namespace bank_project.account
@@ -16,6 +17,9 @@ namespace bank_project.account
         {
             return _repo.GetAccountfromfile();
         }
+
+        // quiz data
+       
         public void saveaccount(accountmodel account)
         {
             _repo.saveinfile(account);
@@ -189,7 +193,7 @@ namespace bank_project.account
         }
 
         // Sort by acc balance
-        public List<accountmodel> sortbybalance()
+        public List<accountmodel> filterbybalance()
         {
             List<accountmodel> accounts = _repo.GetAccountfromfile();
             for (int i = 0; i < accounts.Count - 1; i++)
@@ -207,13 +211,116 @@ namespace bank_project.account
             return accounts;
         }
 
-        // filter by account type
+        public List<accountmodel> filteraccounts(List<accountmodel> accounts, List<customermodel> customers, string namePart, double minBalance, double maxBalance, string category)
+        {
+            List<accountmodel> result = new List<accountmodel>();
+            foreach (accountmodel account in accounts)
+            {
+                string name = getcustomername(customers, account.getcustomerid());
+
+                bool nameMatch = false;
+                if (namePart == "")
+                {
+                    nameMatch = true;
+                }
+                else if (name.ToLower().Contains(namePart.ToLower()))
+                {
+                    nameMatch = true;
+                }
+
+                bool balanceMatch = false;
+                if (account.getbalance() >= minBalance && account.getbalance() <= maxBalance)
+                {
+                    balanceMatch = true;
+                }
+
+                bool categoryMatch = false;
+                if (category == "")
+                {
+                    categoryMatch = true;
+                }
+                else if (account.getaccounttype().ToLower() == category.ToLower())
+                {
+                    categoryMatch = true;
+                }
+
+                if (nameMatch && balanceMatch && categoryMatch)
+                {
+                    result.Add(account);
+                }
+            }
+            return result;
+        }
+
+        private string getcustomername(List<customermodel> customers, int customerId)
+        {
+            foreach (customermodel customer in customers)
+            {
+                if (customer.getcustomerid() == customerId)
+                {
+                    return customer.getname();
+                }
+            }
+            return "";
+        }
+
+        // min and max 
+        public List<accountmodel> filterbalance(double min , double max)
+        {
+            List<accountmodel> accounts = _repo.GetAccountfromfile();
+           foreach( accountmodel balance in accounts)
+            {
+                if( balance.getbalance() >= min && balance.getbalance() <= max)
+                {
+                    return accounts;
+
+                }
+            }
+            return accounts;
+        }
+
+        // filter by account type 
+
         public List<accountmodel> filterbytype(string accountType)
         {
             List<accountmodel> result = new List<accountmodel>();
             foreach (accountmodel account in _repo.GetAccountfromfile())
             {
                 if (account.getaccounttype() == accountType)
+                {
+                    result.Add(account);
+                }
+            }
+            return result;
+        }
+        public static List<accountmodel> filterbytype(List<accountmodel> accounts, string accountType)
+        {
+            List<accountmodel> result = new List<accountmodel>();
+            foreach (accountmodel account in accounts)
+            {
+                if (account.getaccounttype() == accountType) { result.Add(account); }
+            }
+            return result;
+        }
+
+
+        public static List<accountmodel> filterbybalancerange(List<accountmodel> accounts, double min, double max)
+        {
+            List<accountmodel> result = new List<accountmodel>();
+            foreach (accountmodel account in accounts)
+            {
+                if (account.getbalance() >= min && account.getbalance() <= max) { result.Add(account); }
+            }
+            return result;
+        }
+        public List<accountmodel> filterbyshortname(List<accountmodel> accounts, List<customermodel> customers, string shortName)
+        {
+            List<accountmodel> result = new List<accountmodel>();
+            string shortNameLower = shortName.Trim().ToLower();
+            foreach (accountmodel account in accounts)
+            {
+                string name = getcustomername(customers, account.getcustomerid());
+                if (shortNameLower == "" || name.ToLower().StartsWith(shortNameLower))
                 {
                     result.Add(account);
                 }

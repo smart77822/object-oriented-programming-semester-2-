@@ -62,7 +62,12 @@ namespace bank_project.account
                 {
                     savingsinterest();
                 }
-                else if (option == "0")
+                else if (option == "12")
+                {
+                    filterbythreeconditions();
+
+                }
+                else if(option == "0")
                 {
                     break;
                 }
@@ -90,6 +95,7 @@ namespace bank_project.account
             Console.WriteLine("9  . 📊 Reports");
             Console.WriteLine("10 . 🔑 Manage Customer Logins (reset password)");
             Console.WriteLine("11 . 💹 Savings Interest");
+            Console.WriteLine("12 .     Search Filter");
             Console.WriteLine("0  . 🖐️ Logout");
             Console.Write("Choice: ");
             string option = Console.ReadLine();
@@ -394,6 +400,58 @@ namespace bank_project.account
             Console.WriteLine("Interest applied to Savings accounts.");
             Console.ReadKey();
         }
+        public void filterbythreeconditions()
+        {
+            Console.Clear();
+            Console.WriteLine("----- Search and Filter -----");
+            Console.WriteLine("Press Enter on any question to skip that filter.");
+            Console.Write("Enter name part: ");
+            string namePart = Console.ReadLine().Trim();
+            double minBalance = readbalanceorempty("Enter minimum balance: ", 0);
+            double maxBalance = readbalanceorempty("Enter maximum balance: ", double.MaxValue);
+            Console.Write("Enter category (Savings / Current): ");
+            string category = Console.ReadLine().Trim();
+
+            List<accountmodel> accounts = _accountservice.getalldata();
+            List<customermodel> customers = _customerservice.getalldata();
+            List<accountmodel> result = _accountservice.filteraccounts(accounts, customers, namePart, minBalance, maxBalance, category);
+
+            Console.Clear();
+            if (result.Count == 0)
+            {
+                Console.WriteLine("No record found.");
+            }
+            else
+            {
+                showaccountheading();
+                foreach (accountmodel account in result)
+                {
+                    showaccountline(account, customers);
+                }
+            }
+            Console.ReadKey();
+        }
+
+        private double readbalanceorempty(string prompt, double defaultValue)
+        {
+            Console.Write(prompt);
+            string text = Console.ReadLine();
+            if (text == "")
+            {
+                return defaultValue;
+            }
+            double value = 0;
+            while (!double.TryParse(text, out value))
+            {
+                Console.Write("Enter a valid number or press Enter to skip: ");
+                text = Console.ReadLine();
+                if (text == "")
+                {
+                    return defaultValue;
+                }
+            }
+            return value;
+        }
 
         private int getnextcustomerid()
         {
@@ -557,13 +615,45 @@ namespace bank_project.account
             return true;
         }
         // sort by account balance
-        public void sortaccountsbybalance()
-        {
-            Console.Clear();
-            Console.WriteLine("Accounts Sorted by Balance (High to Low)");
-            Console.WriteLine("-----------------------------------------");
+        //public void sortaccountsbybalance()
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine("Accounts Sorted by Balance (High to Low)");
+        //    Console.WriteLine("-----------------------------------------");
 
-            List<accountmodel> accounts = _accountservice.sortbybalance();
+        //    List<accountmodel> accounts = _accountservice.sortbybalance();
+
+        //    if (accounts.Count == 0)
+        //    {
+        //        Console.WriteLine("No accounts found.");
+        //    }
+        //    else
+        //    {
+        //        foreach (accountmodel account in accounts)
+        //        {
+        //            Console.WriteLine(account.getaccountnumber() + " | " + account.getcustomerid() + " | " + account.getaccounttype() + " | " + account.getbalance() + " | " + account.getstatus());
+        //        }
+        //    }
+
+        //    Console.WriteLine("Press any key to continue...");
+        //    Console.ReadKey();
+        //}
+
+
+        // sort by account type
+        public void sortbyaccounttype()
+        {
+
+            Console.Write("Enter Category to filter [Savings / Current]:");
+            string category = Console.ReadLine();
+            while (!(isvalidacctype(category)))
+            {
+
+                Console.Write("Account Valid Type (Savings / Current): ");
+                category = Console.ReadLine();
+            }
+
+            List<accountmodel> accounts = _accountservice.filterbytype(category);
 
             if (accounts.Count == 0)
             {
@@ -580,6 +670,26 @@ namespace bank_project.account
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
+        public static void filterbyrange(List<accountmodel> accounts)
+        {
+            Console.Write("Enter minimum balance: ");
+            double min = double.Parse(Console.ReadLine());
+            Console.Write("Enter maximum balance: ");
+            double max = double.Parse(Console.ReadLine());
+            List<accountmodel> result = accountservice.filterbybalancerange(accounts, min, max);
 
+            if (result.Count == 0) { Console.WriteLine("No record found."); }
+            else { foreach (accountmodel a in result) { Console.WriteLine(a.getaccountnumber() + " | Rs. " + a.getbalance()); } }
+            Console.ReadKey();
+        }
+        public static void filterbytype(List<accountmodel> accounts)
+        {
+            Console.Write("Enter type (Savings / Current): ");
+            string type = Console.ReadLine();
+            List<accountmodel> result = accountservice.filterbytype(accounts, type);
+            if (result.Count == 0) { Console.WriteLine("No record found."); }
+            else { foreach (accountmodel a in result) { Console.WriteLine(a.getaccountnumber() + " | " + a.getaccounttype() + " | Rs. " + a.getbalance()); } }
+            Console.ReadKey();
+        }
     }
 }
