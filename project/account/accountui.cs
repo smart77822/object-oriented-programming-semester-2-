@@ -556,6 +556,30 @@ namespace bank_project.account
 
             return true;
         }
+        // sort by account balance
+        public void sortaccountsbybalance()
+        {
+            Console.Clear();
+            Console.WriteLine("Accounts Sorted by Balance (High to Low)");
+            Console.WriteLine("-----------------------------------------");
+
+            List<accountmodel> accounts = _accountservice.sortbybalance();
+
+            if (accounts.Count == 0)
+            {
+                Console.WriteLine("No accounts found.");
+            }
+            else
+            {
+                foreach (accountmodel account in accounts)
+                {
+                    Console.WriteLine(account.getaccountnumber() + " | " + account.getcustomerid() + " | " + account.getaccounttype() + " | " + account.getbalance() + " | " + account.getstatus());
+                }
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
 
     }
 }
